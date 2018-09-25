@@ -68,6 +68,7 @@ class FuncionarioModel {
     }
   }
 
+
   public function gravar() {
     try {
       $sqlInsert = "INSERT INTO funcionario(nome, cargo, permissao) VALUES(:nome, :cargo, :permissao)";
@@ -95,6 +96,7 @@ class FuncionarioModel {
       return false;
     }
   }
+
 
   public function deletar($id) {
     try {

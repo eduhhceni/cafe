@@ -42,7 +42,7 @@ class Funcionario {
 
         $registros .= "</td>";
         $registros .= '<td style="text-align:center"><a href="index.php?modulo=Funcionario&acao=excluir&chave=' . $id . '" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span></a>'
-        . ' <a href="index.php?modulo=Funcionario&acao=editar&chave=' . $id . '" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-pencil"></span></a></td>';
+        . ' <a href="index.php?modulo=Funcionario&acao=editar&chave=' . $id . '/" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-pencil"></span></a></td>';
         $registros .= "</tr>";
       }
     }
@@ -59,9 +59,7 @@ class Funcionario {
       $funcionarioModel->setNome($_POST["nome"]);
       $funcionarioModel->setCargo($_POST["cargo"]);
       $funcionarioModel->setPermissao($_POST["permissao"]);
-
       $funcionarioModel->gravar();
-
       return $this->listar();
     }
   }

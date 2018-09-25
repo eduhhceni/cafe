@@ -51,7 +51,7 @@ class Cafe {
         $registros .= "<td>" . $reg["cargo"] . "</td>";
 
         $registros .= "</td>";
-        $registros .= '<td style="text-align:center"><a href="index.php?modulo=Cafe&acao=pedir&chave=' . $id . '/" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-ok"></span></a>';
+        $registros .= '<td style="text-align:center"><a href="index.php?modulo=Cafe&acao=pedir&chave=' . $id . '&chave2=' . $idCafe .'" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-ok"></span></a>';
         $registros .= "</tr>";
       }
     }
@@ -62,13 +62,11 @@ class Cafe {
   public function pedir(){
     date_default_timezone_set('America/Sao_Paulo');
     $cafeModel = new CafeModel();
+    $cafeModel->selecionar($_GET["chave2"]);
     $funcionarioModel = new FuncionarioModel();
     $funcionarioModel->selecionar($_GET["chave"]);
+
     $pedido = file_get_contents("view/html/pedido.html");
-    if (isset($_GET["chave"])) {
-      $id = $_GET["chave"];
-    }
-    $cafeModel->selecionar($id);
 
     $pedido = str_replace("#NOME#", $funcionarioModel->getNome(), $pedido);
     $pedido = str_replace("#CARGO#", $funcionarioModel->getCargo(), $pedido);
@@ -76,7 +74,13 @@ class Cafe {
     $pedido = str_replace("#HORA#", date('H:i') , $pedido);
     $pedido = str_replace("#DATA#", date('d/m') , $pedido);
 
-    $html = str_replace("#REGISTROS#", null, $pedido);
-    return $html;
+    $pedido = str_replace("#BOTAO#", "<a href='index.php?modulo=Registro&acao=salvar&chave=" . $_GET["chave"] . "&chave2=" . $_GET["chave2"] . "' class='btn btn-success'>Finalizar Pedido</a>", $pedido);
+    if($cafeModel->getPermissao() == 1 && $funcionarioModel->getPermissao() == 0){
+      return "<pre style='font-size:18px;'>Você não tem permissão para pedir esse café.
+      <br /><a href='index.php?modulo=Cafe&acao=confirmar&chave=" . $_GET["chave2"] . "' class='btn btn-warning ' style='float:right;'><span class='glyphicon glyphicon-chevron-left'></span> Voltar</a></pre>";
+    }else{
+      $html = str_replace("#REGISTROS#", null, $pedido);
+      return $html;
+    }
   }
 }
