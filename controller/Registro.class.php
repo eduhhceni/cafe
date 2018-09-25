@@ -25,18 +25,18 @@ class Registro {
   }
 
 
-    public function salvar() {
-      date_default_timezone_set('America/Sao_Paulo');
-        $funcionarioModel = new FuncionarioModel();
-        $funcionarioModel->selecionar($_GET["chave"]);
-        $cafeModel = new CafeModel();
-        $cafeModel->selecionar($_GET["chave2"]);
-        $registroModel = new RegistroModel();
-        $registroModel->setFuncionario($funcionarioModel->getNome());
-        $registroModel->setCafe($cafeModel->getTipo());
-        $registroModel->setData(date('Y-m-d H:i:s'));
-        $registroModel->gravar();
+  public function salvar() {
+    date_default_timezone_set('America/Sao_Paulo');
+    $funcionarioModel = new FuncionarioModel();
+    $funcionarioModel->selecionar($_GET["chave"]);
+    $cafeModel = new CafeModel();
+    $cafeModel->selecionar($_GET["chave2"]);
+    $registroModel = new RegistroModel();
+    $registroModel->setFuncionario($funcionarioModel->getNome());
+    $registroModel->setCafe($cafeModel->getTipo());
+    $registroModel->setData(date('Y-m-d H:i:s'));
+    $registroModel->gravar();
 
-        return $this->listar();
-    }
+    return $this->listar();
+  }
 }

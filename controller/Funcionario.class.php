@@ -20,6 +20,9 @@ class Funcionario {
     }
 
     $htmlForm = str_replace("#NOME#", $funcionarioModel->getNome(), $htmlForm);
+    if($funcionarioModel->getPermissao() == 1){
+      $htmlForm = str_replace("#PERMISSAO#", "selected", $htmlForm);
+    }
     $htmlForm = str_replace("#CARGO#", $funcionarioModel->getCargo(), $htmlForm);
     $htmlForm = str_replace("#ID#", $funcionarioModel->getId(), $htmlForm);
 

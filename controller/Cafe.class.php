@@ -20,7 +20,7 @@ class Cafe {
           $registros .= "<td>Padrão</td>";
         }
         $registros .= "</td>";
-        $registros .= '<td style="text-align:center"><a href="index.php?modulo=Cafe&acao=confirmar&chave=' . $id . '" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-ok"></span></a>';
+        $registros .= '<td style="text-align:center; width: 200px;"><a href="index.php?modulo=Cafe&acao=confirmar&chave=' . $id . '" class="btn btn-primary btn-xs" style="width:70px"><span class="glyphicon glyphicon-ok"></span></a>';
         $registros .= "</tr>";
         $registros .= "</tr>";
       }
@@ -51,7 +51,7 @@ class Cafe {
         $registros .= "<td>" . $reg["cargo"] . "</td>";
 
         $registros .= "</td>";
-        $registros .= '<td style="text-align:center"><a href="index.php?modulo=Cafe&acao=pedir&chave=' . $id . '&chave2=' . $idCafe .'" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-ok"></span></a>';
+        $registros .= '<td style="text-align:center; width: 200px;"><a href="index.php?modulo=Cafe&acao=pedir&chave=' . $id . '&chave2=' . $idCafe .'" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-ok" style="width:58px;"></span></a>';
         $registros .= "</tr>";
       }
     }
