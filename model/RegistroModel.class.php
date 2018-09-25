@@ -73,7 +73,7 @@ class RegistroModel {
 
   public function consultar(){
     try {
-      $sql = "SELECT * FROM registro ORDER BY data_pedido";
+      $sql = "SELECT * FROM registro ORDER BY data_pedido DESC";
       $query = $this->conexao->prepare($sql);
       $query->execute();
 

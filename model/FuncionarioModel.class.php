@@ -45,9 +45,10 @@ class FuncionarioModel {
       $this->conexao = new PDO("mysql:host=localhost; port=3306; dbname=cafe", "root", "");
       $this->conexao->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     } catch (PDOException $e) {
-      echo "Erro ao conectar com o Banco de Dados";
+      echo "<pre>Erro ao conectar com o Banco de Dados";
       echo "<br />";
       echo $e->getMessage();
+      echo "</pre>";
     }
   }
 
@@ -61,9 +62,10 @@ class FuncionarioModel {
 
       return $arrayDados;
     } catch (PDOException $e) {
-      echo "Erro ao consultar os funcionários";
+      echo "<pre>Erro ao consultar os funcionários";
       echo "<br />";
       echo $e->getMessage();
+      echo "</pre>";
       return false;
     }
   }
@@ -90,9 +92,10 @@ class FuncionarioModel {
 
       $query->execute();
     } catch (PDOException $e) {
-      echo "Houve um erro ao gravar o registro";
+      echo "<pre>Houve um erro ao gravar o registro";
       echo "<br />";
       echo $e->getMessage();
+      echo "</pre>";
       return false;
     }
   }
@@ -106,9 +109,10 @@ class FuncionarioModel {
       $query->execute();
       return true;
     } catch(PDOException $e) {
-      echo "Erro ao excluir o registro";
+      echo "<pre>Erro ao excluir o registro";
       echo "<br />";
       echo $e->getMessage();
+      echo "</pre>";
       return false;
     }
   }
@@ -129,9 +133,11 @@ class FuncionarioModel {
 
       return true;
     } catch(PDOException $e) {
-      echo "Erro ao consultar os funcionários";
+
+      echo "<pre>Erro ao consultar os funcionários";
       echo "<br />";
       echo $e->getMessage();
+      echo "</pre>";
       return false;
     }
   }
