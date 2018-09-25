@@ -7,8 +7,8 @@ class App {
   public static $chave;
 
   public function iniciar() {
-    self::$modulo = (!empty($_GET["modulo"])) ? $_GET["modulo"] : "Pagina";
-    self::$acao = (!empty($_GET["acao"])) ? $_GET["acao"] : "home";
+    self::$modulo = (!empty($_GET["modulo"])) ? $_GET["modulo"] : "Cafe";
+    self::$acao = (!empty($_GET["acao"])) ? $_GET["acao"] : "pedir";
     self::$chave = (!empty($_GET["chave"])) ? $_GET["chave"] : "";
 
     $template = new Template();

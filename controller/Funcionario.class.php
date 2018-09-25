@@ -55,10 +55,11 @@ class Funcionario {
   public function salvar() {
     if (isset($_POST["nome"])) {
       $funcionarioModel = new FuncionarioModel();
-
       $funcionarioModel->setId($_POST["id"]);
       $funcionarioModel->setNome($_POST["nome"]);
       $funcionarioModel->setCargo($_POST["cargo"]);
+      $funcionarioModel->setPermissao($_POST["permissao"]);
+
       $funcionarioModel->gravar();
 
       return $this->listar();

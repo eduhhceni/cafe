@@ -6,6 +6,7 @@ class FuncionarioModel {
   private $id;
   private $nome;
   private $cargo;
+  private $permissao;
 
   function getId(){
     return $this->id;
@@ -31,6 +32,14 @@ class FuncionarioModel {
     $this->cargo = $cargo;
   }
 
+  function getPermissao(){
+    return $this->permissao;
+  }
+
+  function setPermissao($permissao) {
+    $this->permissao = $permissao;
+  }
+
   function __construct() {
     try {
       $this->conexao = new PDO("mysql:host=localhost; port=3306; dbname=cafe", "root", "");
@@ -44,7 +53,7 @@ class FuncionarioModel {
 
   public function consultar(){
     try {
-      $sql = "SELECT * FROM funcionario";
+      $sql = "SELECT * FROM funcionario ORDER BY nome";
       $query = $this->conexao->prepare($sql);
       $query->execute();
 
@@ -61,9 +70,9 @@ class FuncionarioModel {
 
   public function gravar() {
     try {
-      $sqlInsert = "INSERT INTO funcionario(nome, cargo) VALUES(:nome, :cargo)";
+      $sqlInsert = "INSERT INTO funcionario(nome, cargo, permissao) VALUES(:nome, :cargo, :permissao)";
 
-      $sqlUpdate = "UPDATE funcionario SET nome = :nome, cargo = :cargo WHERE id = :id";
+      $sqlUpdate = "UPDATE funcionario SET nome = :nome, cargo = :cargo, permissao = :permissao WHERE id = :id";
 
       if ($this->id > 0) {
         $query =
@@ -76,6 +85,7 @@ class FuncionarioModel {
 
       $query->bindValue(":nome", $this->nome);
       $query->bindValue(":cargo", $this->cargo);
+      $query->bindValue(":permissao", $this->permissao);
 
       $query->execute();
     } catch (PDOException $e) {
@@ -113,6 +123,8 @@ class FuncionarioModel {
       $this->id = $arrayDados["id"];
       $this->nome = $arrayDados["nome"];
       $this->cargo = $arrayDados["cargo"];
+      $this->permissao = $arrayDados["permissao"];
+
       return true;
     } catch(PDOException $e) {
       echo "Erro ao consultar os funcionários";
